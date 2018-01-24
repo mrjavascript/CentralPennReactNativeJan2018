@@ -1,0 +1,34 @@
+import React, {Component} from 'react';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import PropTypes from 'prop-types';
+
+export default class Item extends Component {
+    render() {
+        return (
+            <TouchableOpacity
+                style={[
+                    styles.container, {backgroundColor: this.props.rowData.bgColor}
+                ]}
+                onPress={
+                    () => this.props.handleDestroyItem(this.props.rowData.id)
+                }
+            >
+                <Text>{this.props.rowData.id}</Text>
+            </TouchableOpacity>
+        );
+    };
+}
+
+Item.propTypes = {
+    handleDestroyItem: PropTypes.func,
+    rowData: PropTypes.object
+}
+
+const styles = StyleSheet.create({
+    container: {
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 10,
+        paddingTop: 10,
+    }
+});
