@@ -1,8 +1,9 @@
+import React, {Component} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from "react-redux";
-import React, {Component} from "react";
-import {StyleSheet, View} from "react-native";
 
 class Header extends Component {
+
     constructor(props) {
         super(props);
 
@@ -12,19 +13,19 @@ class Header extends Component {
 
     handleCreateItem() {
         const randomizedData = this.randomizeItemData();
-        this.props.dispatch({type: "ADD_ITEM", ...randomizedData})
+        this.props.dispatch({type: "ADD_ITEM", ...randomizedData});
     }
 
     randomizeItemData() {
-        // random color from array
-        const colorArray = ['#2892b4', '#b44a28', '#28B490'];
-        const randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+        // Generate random color from array
+        const colorArr = ["#2892b4", "#b44a28", "#28B490"];
+        const randColor = colorArr[Math.floor(Math.random() * colorArr.length)];
 
-        // pick a random number below 1000
-        const randomNumber = Math.floor(Math.random() * 1000 + 1);
-        const randomName = "Item: " + randomNumber;
+        // Generate random number below 1000
+        const randNum = Math.floor(Math.random() * 1000 + 1);
+        const randName = "Item " + randNum;
 
-        return {name: randomName, bgColor: randColor}
+        return {name: randName, bgColor: randColor};
     }
 
     render() {
@@ -33,7 +34,8 @@ class Header extends Component {
                 <View style={styles.header}>
                     <View style={styles.left}/>
                     <View style={styles.middle}>
-                        <TouchableOpacity onPress={this.props.handleCreateItem()}>
+                        {/*<Button title="ADD ITEM" style={styles.textRight} onPress={() => this.handleCreateItem()} />*/}
+                        <TouchableOpacity onPress={() => this.handleCreateItem()}>
                             <Text style={styles.textRight}>ADD ITEM</Text>
                         </TouchableOpacity>
                     </View>
@@ -47,9 +49,8 @@ class Header extends Component {
 const styles = StyleSheet.create({
     container: {
         height: 80,
-        backgroundColor: '#181e29'
+        backgroundColor: "#181e29"
     },
-
     header: {
         flex: 1,
         flexDirection: "row",
@@ -65,11 +66,9 @@ const styles = StyleSheet.create({
         top: 40
     },
     textRight: {
-        color: '#efefef',
+        color: "#efefef",
         fontWeight: "bold"
     }
-
-
 });
 
 export default connect()(Header);

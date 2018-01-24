@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import {Button, StatusBar, StyleSheet, View} from "react-native";
 import Header from "./redux/Header";
 import ItemList from "./redux/ItemList";
-import {createProvider as Provider} from "react-redux";
-import * as StatusBar from "react-native";
 import {applyMiddleware, createStore} from "redux";
-import itemApp from "../reducers/index";
 import {logger} from "redux-logger";
+import itemApp from "../reducers/index";
+import {Provider} from "react-redux";
 
 // this comes from redux!
 const store = createStore(itemApp, applyMiddleware(logger));
